@@ -1,0 +1,64 @@
+{% extends "base.bs4" %}
+
+{% block content %}
+    <!-- Begin page content -->
+    <div class="container">
+      <!-- The justified navigation menu is meant for single line per list item.
+           Multiple lines will require custom code not provided by Bootstrap. -->
+      
+
+      <!-- Jumbotron -->
+      <div class="row navpow">
+        <div class="col-md-2">
+          &nbsp;
+        </div>
+        <div class="col-md-4 text-left">
+          <a href="/">home</a>
+        </div>
+        <div class="col-md-4 text-right">
+          <a href="http://www.pythononwheels.org/gettingstarted">getting started</a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2">
+          &nbsp;
+        </div>
+        <div class="col-md-8">
+          &nbsp;
+        </div>
+        
+        <div class="col-md-2">
+          &nbsp;
+        </div>
+      </div>
+      <div class="jumbotron">
+        <img src={{ static_url("images/pow_logo_300.png") }}  style="display: inline-block;" />
+           
+      </div>
+      <!-- START THE FEATURETTES -->
+
+      <!--hr class="featurette-divider" -->
+      <div class="row featurette">
+        <div class="col-md-2">
+          &nbsp;
+        </div>
+        <div class="col-md-8">
+               <p class="lead">The quick and easy generative Webframework for python.
+        
+        Follow on twitter for updates: <a href="https://twitter.com/pythononwheels" class="twitter-follow-button" data-show-count="false">Follow @pythononwheels</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+        You can <a href="https://github.com/pythononwheels/pow_devel">check the current state on github</a>
+        <!-- Place this tag where you want the button to render. -->
+<a class="github-button" href="https://github.com/pythononwheels/pow_devel" data-icon="octicon-star" data-style="mega" data-count-href="/pythononwheels/pow_devel/stargazers" data-count-api="/repos/pythononwheels/pow_devel#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star pythononwheels/pow_devel on GitHub">Star</a>
+        
+
+          
+      <div class="col-md-2">
+        &nbsp;
+      </div>
+
+
+      
+
+    </div> <!-- /container -->
+{% end %}

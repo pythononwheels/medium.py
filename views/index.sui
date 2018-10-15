@@ -1,0 +1,9 @@
+{% extends "base.sui" %}
+
+{% block content %} 
+
+test
+
+{% end %}
+
+

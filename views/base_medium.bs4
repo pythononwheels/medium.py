@@ -1,0 +1,168 @@
+{% import random %}
+{% import markdown %}
+{% import config as cfg %} 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="shortcut icon" type="image/x-icon" href="{{ static_url("images/pow_favicon-16x16.png")}}">
+	<title>medium.py</title>
+	<!-- Bootstrap core CSS -->
+	
+	<!-- Fonts -->
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
+	<!-- Custom styles for this template -->
+	
+	<!--link href="{{ static_url("css/justified-nav.css") }}" rel="stylesheet"-->
+    <link href="{{ static_url("css/prism.css") }}" rel="stylesheet">
+    
+	<!--link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"-->
+	<link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
+
+	<link href="{{ static_url("css/bootstrap.css")}}" rel="stylesheet">
+	
+	<link href="{{ static_url("assets/css/mediumish.css")}}" rel="stylesheet">
+	
+
+	
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css" type="text/css" media="screen" charset="utf-8">	
+	
+	<link href="{{ static_url("css/highlight-styles/hopscotch.css")}}" rel="stylesheet">
+	<!--link href="{{ static_url("css/medium.css") }}" rel="stylesheet"-->
+	<link href="{{ static_url("css/pow.css") }}" rel="stylesheet">
+	
+	{% block include_css %}
+	
+    {% end %}
+
+
+
+</head>
+<body>
+	
+<!-- Begin Nav
+================================================== -->
+<nav class="navbar navbar-toggleable-md navbar-light bg-white fixed-top mediumnavigation">
+	<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+					
+	<div class="container">
+		<!-- Begin Logo -->
+		<a class="navbar-brand" href="/">
+			<!--img src="{{ static_url("images/pow_logo_128.png")}}" alt="logo"-->medium.py
+		</a>
+		<!-- End Logo -->
+		<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+			<!-- Begin Menu -->
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item active">
+					<a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/blog_medium">featured blog</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/blog_simple">simple blog</a>
+				</li>
+				<li class="nav-item">
+					{% try %}
+						{% if curr_user %}
+							<a class="nav-link" href="/logout">Logout ({{curr_user.login}})</a>
+						{% else %}
+							<a class="nav-link" href="/login">Login</a>
+						{% end %}
+					{% except %}
+						<a class="nav-link" href="/login">Login</a>
+					{% end %}
+					
+				</li>
+			</ul>
+			<!-- End Menu -->
+			<!-- Begin Search -->
+			<!--form class="form-inline my-2 my-lg-0">
+				<input class="form-control mr-sm-2" type="text" placeholder="Search">
+				<span class="search-icon"><svg class="svgIcon-use" width="25" height="25" viewbox="0 0 25 25"><path d="M20.067 18.933l-4.157-4.157a6 6 0 1 0-.884.884l4.157 4.157a.624.624 0 1 0 .884-.884zM6.5 11c0-2.62 2.13-4.75 4.75-4.75S16 8.38 16 11s-2.13 4.75-4.75 4.75S6.5 13.62 6.5 11z"></path></svg></span>
+			</form-->
+			<!-- End Search -->
+		</div>
+	</div>
+</nav>
+<!-- End Nav
+================================================== -->
+
+<!-- Begin Site Title
+================================================== -->
+<!--div class="container"-->
+	<!--div class="mainheading">
+		<h1 class="sitetitle">PythonOnWheels Blog</h1>
+		<p class="lead">
+			 News about PythonOnWheels, Python, programming in general and interesting stuff. (Mostly IT based)
+		</p>
+	</div-->
+<!-- End Site Title
+================================================== -->
+	
+	{% block content %}
+	{% end %}
+	<!-- Begin Footer
+	================================================== -->
+	<div class="container">
+
+		<div class="footer">
+			<p class="pull-left">
+				<a href="https://de.wikipedia.org/wiki/Copyleft"><span class="copyleft">&copy;</span></a> 
+				2018 <a href="www.pythononwheels.org/mediumpy">medium.py</a> by khz. Free for any use. 
+			</p>
+			<p class="pull-right">
+				Icons made by <a href="https://www.flaticon.com/authors/twitter" title="Twitter">Twitter</a> 
+				from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> 
+				is licensed by 
+				<a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0</a>, 
+				Mediumish Theme by <a target="_blank" href="https://www.wowthemes.net">WowThemes.net</a>
+			</p>
+			<div class="clearfix">
+			</div>
+		</div>
+	</div>
+	<!-- End Footer
+	================================================== -->
+
+<!--/div-->
+<!-- /.container -->
+
+<!-- Bootstrap core JavaScript
+    ================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="{{ static_url("assets/js/jquery.min.js")}}"></script>
+<script src="{{ static_url("js/tether.min.js")}}"></script>
+<script src="{{ static_url("assets/js/bootstrap.min.js")}}"></script>
+<script src="{{ static_url("assets/js/ie10-viewport-bug-workaround.js")}}"></script>
+<script src="{{ static_url("js/highlight.pack.js")}}"></script>
+<!--script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script-->
+<script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.serializeJSON/2.8.1/jquery.serializejson.js"></script>
+<script src="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/js/medium-editor.min.js"></script>
+<script src="http://cdn.jsdelivr.net/mojs/latest/mo.min.js"></script>
+<!-- Place this tag in your head or just before your close body tag. -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+{% block include_js %}
+
+{% end %}
+	<script>
+		$( document ).ready(function() {
+        	console.log( "document loaded" );
+			{% block document_ready %}
+
+			{% end %}
+    	});
+	</script>
+	{% block js %}
+
+	{% end %}
+</body>
+</html>
