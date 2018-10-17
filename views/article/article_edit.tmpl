@@ -10,7 +10,7 @@
     <!--link rel="stylesheet" href="/static/medium-editor/css/medium-editor.min.css"-->
     <!--link rel="stylesheet" href="bower_components/medium-editor/dist/css/themes/default.css" -->
     <link rel="stylesheet" href="/static/medium-editor/css/medium-editor-insert-plugin.min.css">
-
+    <link rel="stylesheet" href="{{  static_url("medium-editor/css/themes/beagle.css")}}">
     {% end %}
 
 {% block include_js %}
@@ -27,6 +27,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.21.0/js/jquery.iframe-transport.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.21.0/js/jquery.fileupload.js"></script>
     <script src="/static/medium-editor/js/medium-editor-insert-plugin.min.js"></script>
+    <script src="{{ static_url("medium-editor/js/medium-button.min.js")}}"></script>
 {% end %}
 
 
@@ -93,8 +94,62 @@
         var editor = new MediumEditor('.editable', {
                 toolbar: {
                     buttons: ['bold', 'italic', 'underline', 'anchor', 'h1', 'h2', 'h3', 'h4',
-                    'quote','pre', 'orderedlist', 'unorderedlist', "html"]
+                    , 'orderedlist', 'unorderedlist', 'quote','pre', "html", "pop", "python"]
                 },
+                extensions: {
+                    // compact
+                    'bb':  new MediumButton({label:'BOLD', start:'<b>', end:'</b>'}),
+                    'hh2': new MediumButton({label:'h2', start:'<h2>', end:'</h2>'}),
+            
+                   // expanded
+                   'warning': new MediumButton({
+                      label: '<i class="fa fa-exclamation-triangle"></i>',
+                      start: '<div class="warning">',
+                      end:   '</div>'
+                   }),
+                
+                // see: https://stackoverflow.com/questions/36211473/jquery-replace-selected-html-tags-in-string-with-value
+                // with JavaScript
+                   'pop': new MediumButton({
+                      label:'POP !p',
+                      action: function(html, mark, parent){
+                                alert('hello :' + html )
+                                // make a pseudo element
+                                var $dataWrapper = $("<div>");
+                                $dataWrapper.html(html)
+                                // now we have the selected html inside a <div>
+                                $dataWrapper.find("p").each( function(){
+                                    var htmlInsideColumn = $(this).html();
+                                    var convertedHtml = htmlInsideColumn + " YEAH !<br >";
+                                    $(this).after(convertedHtml);   //let's place the converted html right after this column element.
+                                    $(this).detach(); 
+                                });
+                                return $dataWrapper.html();
+                              }
+                    }),
+                    'python': new MediumButton({
+                        label:'python',
+                        action: function(html, mark, parent){
+                                // alert('hello :' + html )
+                                // clean the code
+                                var $dataWrapper = $("<pre>");
+                                    $dataWrapper.html(html)
+                                    // now we have the selected html inside a <pre>
+                                    $dataWrapper.find("p").each( function(){
+                                        var htmlInsideColumn = $(this).html();
+                                        var convertedHtml = htmlInsideColumn + " <br >";
+                                        $(this).after(convertedHtml);   //let's place the converted html right after this column element.
+                                        $(this).detach(); 
+                                    });
+                                var html_new = $dataWrapper.html();
+                                var out =  '<pre><code class="python">' + html_new + '</code></pre>';
+                                return out;
+                            }
+                    })
+            
+            
+                }
+                
             }
         );
 

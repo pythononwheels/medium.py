@@ -9,6 +9,7 @@ static/upload/
 Scripts/
 Include/
 tcl/
+medium.log
 
 # C extensions
 *.so
