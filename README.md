@@ -35,7 +35,7 @@ This is also the demo article included in the bundle. The edit options on the le
 
 ## Last example is the article admin view:
 
-![article admin mode](https://raw.githubusercontent.com/pythononwheels/medium.py/master/static/images/Screenshot_2018-10-18_medium_py_article_admin.png)
+![article admin mode](https://github.com/pythononwheels/medium.py/blob/master/static/images/Screenshot_2018-10-18_medium_py_article_admin.png)
 
 
 Check the [Usable online Demo](http://mediumpy.pythononwheels.org). 
