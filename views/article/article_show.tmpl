@@ -11,18 +11,22 @@
 
 {% block document_ready %}
     
-    //hljs.configure({
-    //    tabReplace: '    ', // 4 spaces
-    //    //classPrefix: '',     // don't append class prefix
-    //    languages: ['python']
-    //});
-    //hljs.initHighlightingOnLoad();
-    $("img").addClass("img-fluid")
+    hljs.configure({
+        tabReplace: '    ', 
+        languages: ['python', 'javascript', 'css'],
+        useBR: true
+    });
 
     $('pre').each(function(i, block) {
         hljs.highlightBlock(block);
-        //hljs.highlight("Python",block);
-        });    
+    });    
+
+    $("img").addClass("img-fluid")
+
+    //hljs.initHighlightingOnLoad();
+    
+     
+    
     
     var burst = new mojs.Burst({
         left: 0, top: 0,

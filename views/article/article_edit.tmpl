@@ -91,10 +91,30 @@
             //}, 10000); // <-- time in milliseconds
             return false;   
         });
+
+        function replace_p_by_br( html, tag = "<span>"){
+            //
+            // cleans all <p></p> in a given html and replaces them by <br>
+            // 
+            // create a pseudo element
+            var $dataWrapper = $(tag);
+            $dataWrapper.html(html);
+            // now we have the selected html inside a <tag>
+            $dataWrapper.find("p").each( function(){
+                var htmlInsideColumn = $(this).html();
+                var convertedHtml = htmlInsideColumn + " <br >";
+                $(this).after(convertedHtml);   //let's place the converted html right after this column element.
+                $(this).detach(); 
+            });
+            // return the new html
+            return $dataWrapper.html();
+        }
+
+
         var editor = new MediumEditor('.editable', {
                 toolbar: {
                     buttons: ['bold', 'italic', 'underline', 'anchor', 'h1', 'h2', 'h3', 'h4',
-                    , 'orderedlist', 'unorderedlist', 'quote','pre', "html", "pop", "python"]
+                    , 'orderedlist', 'unorderedlist', 'quote',"html", "pop", 'code', "python", "js"]
                 },
                 extensions: {
                     // compact
@@ -145,6 +165,22 @@
                                 var out =  '<pre><code class="python">' + html_new + '</code></pre>';
                                 return out;
                             }
+                    }),
+                    'js': new MediumButton({
+                        label:'js',
+                        action: function(html, mark, parent){
+                            var out =  '<pre><code class="javascript">' + replace_p_by_br(html) + '</code></pre>';
+                            alert(out);
+                            return out;
+                        }
+                    }),
+                    'code': new MediumButton({
+                        label:'code',
+                        action: function(html, mark, parent){
+                            var out =  '<pre><code>' + replace_p_by_br(html) + '</code></pre>';
+                            alert(out);
+                            return out;
+                        }
                     })
             
             
