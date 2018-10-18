@@ -133,52 +133,31 @@
                    'pop': new MediumButton({
                       label:'POP !p',
                       action: function(html, mark, parent){
-                                alert('hello :' + html )
-                                // make a pseudo element
-                                var $dataWrapper = $("<div>");
-                                $dataWrapper.html(html)
-                                // now we have the selected html inside a <div>
-                                $dataWrapper.find("p").each( function(){
-                                    var htmlInsideColumn = $(this).html();
-                                    var convertedHtml = htmlInsideColumn + " YEAH !<br >";
-                                    $(this).after(convertedHtml);   //let's place the converted html right after this column element.
-                                    $(this).detach(); 
-                                });
-                                return $dataWrapper.html();
-                              }
+                            // just replace all <p></p> by <br> 
+                            return replace_p_by_br(html);
+                        }
                     }),
                     'python': new MediumButton({
                         label:'python',
                         action: function(html, mark, parent){
-                                // alert('hello :' + html )
-                                // clean the code
-                                var $dataWrapper = $("<pre>");
-                                    $dataWrapper.html(html)
-                                    // now we have the selected html inside a <pre>
-                                    $dataWrapper.find("p").each( function(){
-                                        var htmlInsideColumn = $(this).html();
-                                        var convertedHtml = htmlInsideColumn + " <br >";
-                                        $(this).after(convertedHtml);   //let's place the converted html right after this column element.
-                                        $(this).detach(); 
-                                    });
-                                var html_new = $dataWrapper.html();
-                                var out =  '<pre><code class="python">' + html_new + '</code></pre>';
-                                return out;
-                            }
+                            // replace all <p></p> by <br> and add the correct language class
+                            var out =  '<pre><code class="python">' + replace_p_by_br(html) + '</code></pre>';
+                            return out;
+                        }
                     }),
                     'js': new MediumButton({
                         label:'js',
                         action: function(html, mark, parent){
+                            // replace all <p></p> by <br> and add the correct language class
                             var out =  '<pre><code class="javascript">' + replace_p_by_br(html) + '</code></pre>';
-                            alert(out);
                             return out;
                         }
                     }),
                     'code': new MediumButton({
                         label:'code',
                         action: function(html, mark, parent){
+                            // replace all <p></p> by <br> and add the correct language class
                             var out =  '<pre><code>' + replace_p_by_br(html) + '</code></pre>';
-                            alert(out);
                             return out;
                         }
                     })

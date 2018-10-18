@@ -11,6 +11,7 @@ import datetime
 @app.add_rest_routes("article")
 @app.add_route("/article/<uuid:id>/upvote", dispatch={"put": "upvote"})
 @app.add_route("/article/list/author/<uuid:id>", dispatch={"put": "upvote"})
+@app.add_route("/blog", dispatch={"get" : "blog"})
 class Article(PowHandler):
 
     # 
@@ -48,8 +49,18 @@ class Article(PowHandler):
     hide_list=["created_at", "last_updated", "text", "lead_image", "images", "published_date",
         "author_avatar", "author_twitter", "author_screenname", "comments", "featured_image", "voter_ips"]
 
-    def upvote(self, id=None):
+    def blog(self):
+        """
+            show the featured blog view
+        """
+        m=Model()
+        res=m.find_by_id(id)
+        self.success(message="article show", data=res, curr_user=self.current_user, template="index_medium.bs4")
         
+    def upvote(self, id=None):
+        """
+            vote the article one up
+        """
         m=Model()
         current_article=m.find_by_id(id)
         current_article.votes+=1

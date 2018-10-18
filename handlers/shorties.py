@@ -18,7 +18,7 @@ class IndexdHandler(BaseHandler):
         #self.redirect("/article/list")
         self.redirect("/article/4491e852-b4bd-444f-a812-5c48a7b7af53")
 
-
+    
 # this will be the last route since it has the lowest pos.
 @app.add_route(".*", pos=0)
 class ErrorHandler(BaseHandler):
