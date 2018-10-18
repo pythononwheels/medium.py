@@ -26,6 +26,9 @@ You can see the inline medium like toolbar right there. You can also see that th
 
 ![article edit mode](https://raw.githubusercontent.com/pythononwheels/medium.py/master/static/images/Screenshot_2018-10-18_medium_py_edit.png)
 
+## This is the article admin view:
+
+![article admin mode](https://github.com/pythononwheels/medium.py/blob/master/static/images/Screenshot_2018-10-18_medium_py_article_admin.png)
 
 ## This is a website screenshot of a demo article in show mode:
 
@@ -33,9 +36,6 @@ This is also the demo article included in the bundle. The edit options on the le
 
 ![article show mode](https://raw.githubusercontent.com/pythononwheels/medium.py/master/static/images/Screenshot_2018-10-18_medium_py_show.png)
 
-## Last example is the article admin view:
+## Check the Demo
 
-![article admin mode](https://github.com/pythononwheels/medium.py/blob/master/static/images/Screenshot_2018-10-18_medium_py_article_admin.png)
-
-
-Check the [Usable online Demo](http://mediumpy.pythononwheels.org). 
+Play around with the [usable online Demo](http://mediumpy.pythononwheels.org). 
