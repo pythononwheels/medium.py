@@ -10,7 +10,7 @@ Scripts/
 Include/
 tcl/
 medium.log
-
+bin/
 # C extensions
 *.so
 
