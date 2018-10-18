@@ -20,15 +20,14 @@ python server.py
 ### Thats it!
 Everything else works online just as you know it from medium.
 
-Check the [Usable onlin Demo](http://mediumpy.pythononwheels.org). 
-
 ## This is an impression of the article online edit mode:
 
-![article edit mode](https://github.com/pythononwheels/medium.py/tree/master/static/images/Screenshot_2018-10-18_medium_py_edit.png)
+![article edit mode](https://raw.githubusercontent.com/pythononwheels/medium.py/master/static/images/Screenshot_2018-10-18_medium_py_edit.png)
 
 
 ## This is a website screenshot of a demo article in show mode:
 
-![article show mode](https://github.com/pythononwheels/medium.py/tree/master/static/images/Screenshot_2018-10-show.png)
+![article show mode](https://raw.githubusercontent.com/pythononwheels/medium.py/master/static/images/Screenshot_2018-10-18_medium_py_show.png)
 
 
+Check the [Usable online Demo](http://mediumpy.pythononwheels.org). 
