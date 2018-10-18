@@ -22,10 +22,14 @@ Everything else works online just as you know it from medium.
 
 ## This is an impression of the article online edit mode:
 
+You can see the inline medium like toolbar right there. You can also see that the selected text is currently formatted as <H4>. The *code*, *pyhton* and *js* buttons format code already prepared for highlight.js (right code class="", p and br removed ... after copy & paste)
+
 ![article edit mode](https://raw.githubusercontent.com/pythononwheels/medium.py/master/static/images/Screenshot_2018-10-18_medium_py_edit.png)
 
 
 ## This is a website screenshot of a demo article in show mode:
+
+This is also the demo article included in the bundle...
 
 ![article show mode](https://raw.githubusercontent.com/pythononwheels/medium.py/master/static/images/Screenshot_2018-10-18_medium_py_show.png)
 
