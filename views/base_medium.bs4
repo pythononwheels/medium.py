@@ -151,7 +151,7 @@
 <script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.serializeJSON/2.8.1/jquery.serializejson.js"></script>
 <!--script src="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/js/medium-editor.min.js"></script-->
-<script src="http://cdn.jsdelivr.net/mojs/latest/mo.min.js"></script>
+<script src="https://cdn.jsdelivr.net/mojs/latest/mo.min.js"></script>
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 {% block include_js %}
