@@ -63,11 +63,11 @@
 				<li class="nav-item active">
 					<a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
 				</li>
-				<li class="nav-item">
+				<!--li class="nav-item">
 					<a class="nav-link" href="/blog_medium">featured blog</a>
-				</li>
+				</li-->
 				<li class="nav-item">
-					<a class="nav-link" href="/blog_simple">simple blog</a>
+					<a class="nav-link" href="/blog_simple">blog</a>
 				</li>
 				<li class="nav-item">
 					{% try %}

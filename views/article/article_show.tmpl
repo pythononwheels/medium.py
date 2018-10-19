@@ -145,11 +145,14 @@
                         </div>
                         <div class="col-md-8">
                                 
-                            <span class="post-read float-right">{{data.read_time}} min read
+                            <span class="post-read float-right">{{data.read_time}} min read 
                 
-                                <span> <b>Author:</b> <a href="/article/list/author/{{data.author["id"]}}">{{data.author["screenname"]}}</a></span>
+                                <span> <b>Author:</b> 
+                                    <a href="/article/list/author/{{data.author["id"]}}">
+                                        {{data.author["screenname"]}} : <img src="{{ data.author["gravatar"] }}" />
+                                    </a></span>
                                 <a href="https://twitter.com/{{data.author["twitter"]}}" class="btn follow">
-                                    Follow on Twitter
+                                    Twitter
                                 </a>
                                 
                             </span>

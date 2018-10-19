@@ -22,12 +22,13 @@ class Article(TinyModel):
         'blog'           :   { 'type' : 'boolean', "default" : False },   # True => article will show uip in blog view
         "votes"          :   { "type" : "integer", "default" : 0 },
         "author"         :   { "type" : "dict" }, #author 
+        "author_id"      :   { "type" : "string" }, #author 
         "images"         :   { "type" : "list"  }, #list of images uploaded for this article   
         "featured_image" :   { "type" : "string", "default" : "" },
         "read_time"      :   { "type" : "string"},
         "published"      :   { "type" : "boolean"},
         "published_date" :   { "type" : "datetime", "default" : datetime.datetime(1999,1,1,23,59)},
-        "voter_ips"      :  { "type" : "list", "default" : [] }
+        "voter_ips"      :   { "type" : "list", "default" : [] }
     }
 
     #

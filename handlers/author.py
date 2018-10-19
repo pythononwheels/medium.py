@@ -1,6 +1,7 @@
 #from medium.handlers.base import BaseHandler
 from medium.handlers.powhandler import PowHandler
 from medium.models.tinydb.author import Author as Model
+from medium.models.tinydb.article import Article
 from medium.config import myapp, database
 from medium.application import app
 import simplejson as json
@@ -103,6 +104,16 @@ class Author(PowHandler):
         m.init_from_json(data_json)
         res = m.find_by_id(m.id)
         res.init_from_json(data_json)
+        #
+        # update all author dicts in articles of this author
+        #
+        art=Article()
+        author_articles=art.find(art.where("author_id") == res.id, as_list=True)
+        for elem in author_articles:
+            elem.author=res.to_dict()
+            elem.upsert()
+            print("updated author information for article: {}".format(str(elem.id)) )
+
         try:
             #res.tags= res.tags.split(",")
             res.upsert()

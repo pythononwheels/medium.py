@@ -312,14 +312,14 @@ class TinyBaseModel(ModelObject):
     
     
 
-    def find(self,*criterion):
+    def find(self,*criterion, as_list=False):
         """ Find something given a query or criterion 
             example: r=t.find(t.where("id") == "c6492e1a-8740-40d9-9b15-d5f1bc73ba97")
             example2: r=t.find(t.Query.id == "c6492e1a-8740-40d9-9b15-d5f1bc73ba97")
         """
         print("  .. find: " + str(*criterion))
         res = self.table.search(*criterion)
-        if len(res) <= 1:
+        if len(res) <= 1 and not as_list:
             return self.dict_result_to_object(res)
         return self._return_find(res)
     
@@ -374,9 +374,14 @@ class TinyBaseModel(ModelObject):
         except Exception as e:
             raise e
 
-    def find_first(self, *criterion):
+    def find_first(self):
         """ return the first hit, or None"""
-        return self.find_one(*criterion)
+        try:
+            res = self.get_all()
+            return next(res)
+        except Exception as e:
+            raise e
+
 
     def q(self):
         """ return a raw query """

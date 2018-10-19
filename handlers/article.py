@@ -1,6 +1,7 @@
 #from medium.handlers.base import BaseHandler
 from medium.handlers.powhandler import PowHandler
 from medium.models.tinydb.article import Article as Model
+from medium.models.tinydb.author import Author
 from medium.config import myapp, database
 from medium.application import app
 import simplejson as json
@@ -11,7 +12,8 @@ import datetime
 @app.add_rest_routes("article")
 @app.add_route("/article/<uuid:id>/upvote", dispatch={"put": "upvote"})
 @app.add_route("/article/list/author/<uuid:id>", dispatch={"put": "upvote"})
-@app.add_route("/blog", dispatch={"get" : "blog"})
+@app.add_route("/blog_medium", dispatch={"get" : "blog_medium"})
+@app.add_route("/blog_simple", dispatch={"get" : "blog_simple"})
 class Article(PowHandler):
 
     # 
@@ -49,14 +51,33 @@ class Article(PowHandler):
     hide_list=["created_at", "last_updated", "text", "lead_image", "images", "published_date",
         "author_avatar", "author_twitter", "author_screenname", "comments", "featured_image", "voter_ips"]
 
-    def blog(self):
+    def get_author(self, author_id):
+        """
+            returns a dict with the author information for the given author_id
+        """
+        a=Author()
+        author = a.find_by_id(author_id)
+        adict=author.to_dict()
+        adict.pop("password")
+        adict.pop("login")
+        return adict
+
+    def blog_medium(self):
         """
             show the featured blog view
         """
         m=Model()
-        res=m.find_by_id(id)
-        self.success(message="article show", data=res, curr_user=self.current_user, template="index_medium.bs4")
-        
+        res=m.find_all()
+        self.success(message="blog medium", data=res, curr_user=self.current_user, template="index_medium.bs4")
+    
+    def blog_simple(self):
+        """
+            shows a simple blog styled article list
+        """
+        m=Model()
+        res=m.find_all()
+        self.success(message="blog simple", data=res, curr_user=self.current_user)
+
     def upvote(self, id=None):
         """
             vote the article one up
@@ -85,8 +106,9 @@ class Article(PowHandler):
 
     def show(self, id=None):
         m=Model()
-        res=m.find_by_id(id)
-        self.success(message="article show", data=res, curr_user=self.current_user)
+        article=m.find_by_id(id)
+        #adict = self.get_author(article.author_id)
+        self.success(message="article show", data=article, curr_user=self.current_user)
     
     @tornado.web.authenticated
     def list(self):
@@ -129,6 +151,7 @@ class Article(PowHandler):
             auth_dict.pop("login")
             auth_dict.pop("password")
             m.author=auth_dict
+            m.author_id=auth_dict["id"]
             m.published_date=datetime.datetime.utcnow()
             m.upsert()
             self.success(message="article, successfully created " + str(m.id), 

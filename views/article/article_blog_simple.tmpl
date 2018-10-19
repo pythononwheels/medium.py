@@ -1,0 +1,66 @@
+{% extends ../base_medium.bs4 %}
+
+{% block include_js %}
+		
+    <!--script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.serializeJSON/2.8.1/jquery.serializejson.js"></script-->
+{% end %}
+
+{% block js %}
+
+<script>
+    $(document).ready(function(){   
+        $(".btn-delete").click(function(e)
+            {
+                console.log( "btn_delete: " + $(e.currentTarget).attr("value"));
+                var id = $(e.currentTarget).attr("value");
+                var data = jsonString = JSON.stringify({"id" : id});
+                console.log(data)
+                $.ajax({
+                        url : "/{{handler_name}}/" + id,
+                        type: "DELETE",
+                        data : data,
+                        success: function(data, textStatus, jqXHR)
+                        {
+                            
+                            var od = JSON.stringify(data);
+                            var obj = JSON.parse(data);
+                            //alert("success sending put: " + data + textStatus)
+                            console.log(obj);
+                            var curr_tr = $("#"+id);
+                            curr_tr.fadeOut();                            
+                        },
+                        error: function (jqXHR, textStatus, errorThrown)
+                        {
+                            console.log(jqXHR);
+                            var curr_tr = $("#"+id);
+                            curr_tr.fadeTo(100, 0.3, function() { $(this).fadeTo(500, 1.0); });
+                           // try fadeTo(0000)
+                        }
+                    });   // <--- end ajax
+                
+            });
+    });
+</script>
+{% end %}
+
+{% block content %}
+<!-- Begin page content -->
+<div class="container">
+            
+    {% for elem in data %}
+    
+    <div class="blog-post">
+        <h2 class="blog-post-title">
+            <a href="/article/{{ elem.get("id") }}">{{ elem.get("title") }}</a></h2>
+        <p class="blog-post-meta">{{elem.get("published_date")}}
+            <a href="#">
+                {{ elem.author["screenname"] }} : <img src="{{ elem.author["gravatar"] }}" />
+            </a>
+        </p>
+        <p>{{ elem.get("teaser") }}</p>
+    </div>
+
+    {% end %}
+    
+</div>
+{% end %}
