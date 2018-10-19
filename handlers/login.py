@@ -27,7 +27,7 @@ class Login(PowHandler):
             self.render("login.bs4")
         else:
             print("already logged in")
-            self.redirect("/blog")
+            self.redirect("/")
     
     def logout(self):
         """

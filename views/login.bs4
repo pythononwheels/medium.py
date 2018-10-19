@@ -47,14 +47,15 @@
 {% block content %}
 <div class="container">
     <div class="jumbotron">
-        <a href="http://www.pythononwheels.org/mediumpy">
-          medium.py
+        <a href="/">
+         <h2>medium.py</h2>
         </a>
     </div>
     <form class="form-signin" action="/login/check" method="POST">
-        <h2 class="form-signin-heading">Please sign in to use this function:</h2>
+        <h4 class="form-signin-heading">Please sign in to use this function: </h4> 
+        Demo: user: admin, password: nimda
         <label for="inputEmail" class="sr-only">Login Name</label>
-        <input type="text" id="inputLogin" name="inputLogin" class="form-control" placeholder="Login" required autofocus>
+        <input type="text" id="inputLogin" name="inputLogin" class="form-control" placeholder="login" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="Password" required>
         <div class="checkbox">
