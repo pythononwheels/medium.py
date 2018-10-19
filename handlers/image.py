@@ -79,11 +79,15 @@ class Image(PowHandler):
             except Exception as e: 
                 print("error upserting image")
             #self.success(message="final_filename is uploaded", data=image, format="json")
-            out_d = { "files" : [ { "url" : myapp["app_base_url"] + myapp["upload_url"] + "/" + sec_filename} ] }
+            out_d = { "files" : [ { 
+                    "url" : myapp["app_base_url"] + myapp["upload_url"] + "/" + sec_filename
+                    }
+                ]
+            }
             print(json.dumps(out_d))
             #self.write(json.dumps(out_d))
      
-            self.success(pure=out_d, format="json")
+            self.success(pure=True, data=out_d, format="json")
             
         except Exception as e: 
             print("raw error: {}".format(str(e)) )

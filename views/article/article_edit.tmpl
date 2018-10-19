@@ -20,13 +20,13 @@
     <!-- Medium Editor Image Plugin JS -->
     <!--script src="bower_components/jquery/dist/jquery.min.js"></script-->
     <!--script src="/static/medium-editor/js/medium-editor.js"></script-->
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.runtime.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sortable/0.9.13/jquery-sortable-min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.21.0/js/vendor/jquery.ui.widget.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.21.0/js/jquery.iframe-transport.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.21.0/js/jquery.fileupload.js"></script>
-    <script src="/static/medium-editor/js/medium-editor-insert-plugin.min.js"></script>
+   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.0/handlebars.runtime.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sortable/0.9.12/jquery-sortable-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.12.0/js/vendor/jquery.ui.widget.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.12.0/js/jquery.iframe-transport.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.12.0/js/jquery.fileupload.js"></script>
+    <script src="/static/medium-editor/js/medium-editor-insert-plugin.js"></script>
     <script src="{{ static_url("medium-editor/js/medium-button.min.js")}}"></script>
 {% end %}
 
@@ -175,7 +175,7 @@
                 images: { // (object) Image addon configuration
                     label: '<span class="fa fa-camera"></span>', // (string) A label for an image addon
                     uploadScript: null, // DEPRECATED: Use fileUploadOptions instead
-                    deleteScript: 'delete.php', // (string) A relative path to a delete script
+                    deleteScript: null, // (string) A relative path to a delete script 'delete.php'
                     deleteMethod: 'POST',
                     fileDeleteOptions: {}, // (object) extra parameters send on the delete ajax request, see http://api.jquery.com/jquery.ajax/
                     preview: true, // (boolean) Show an image before it is uploaded (only in browsers that support this feature)
@@ -219,9 +219,14 @@
                         maxFileSizeError: 'This file is too big: '
                     },
                     uploadCompleted: function ($el, data) {
-                        console.log("uploaded")
+                        console.log("Successfully uploaded");
                     }, // (function) Callback function called when upload is completed
-                    uploadFailed: function (uploadErrors, data) {} // (function) Callback function called when upload failed
+                    uploadFailed: function (uploadErrors, data) {
+                        console.log("Upload Error: " + uploadErrors);
+                        comsole.log("*****************");
+                        comsole.log(data);
+
+                    } // (function) Callback function called when upload failed
                 },
                 embeds: { // (object) Embeds addon configuration
                     label: '<span class="fa fa-youtube-play"></span>', // (string) A label for an embeds addon
