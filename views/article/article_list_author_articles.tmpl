@@ -46,6 +46,19 @@
 {% block content %}
 <!-- Begin page content -->
 <div class="container">
+        <div class="jumbotron jumbotron-fluid">
+                <div class="container">
+                    <h1>All articles of author:</h1>
+                    <div>
+                        <a href="/article/list/author/{{data.author["id"]}}">
+                            {{data.author["screenname"]}} : <img src="{{ data.author["gravatar"] }}" />
+                        </a>
+                        <a href="https://twitter.com/{{data.author["twitter"]}}" class="btn follow">
+                            Twitter
+                        </a>
+                    </div>
+                </div>
+            </div>
     {% for elem in data %}
     <div class="row">
         <div class="col-md-2 col-xs-12">

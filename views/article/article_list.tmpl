@@ -88,7 +88,14 @@
                         </td>
                         {% for key in elem.schema.keys() %}
                             {% if key not in hide_list %}
-                                <td>{{getattr(elem, key)}}</td>
+                                {% if key == "teaser" %}
+                                    {% try %}
+                                        <td>{{getattr(elem, key)[0:30]}}</td>
+                                    {% except %}
+                                    {% end %}
+                                {% else %}
+                                    <td>{{getattr(elem, key)}}</td>
+                                {% end %}
                             {% end %}  
                         {% end %}
                     </tr>

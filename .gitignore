@@ -11,6 +11,8 @@ Include/
 tcl/
 medium.log
 bin/
+include/
+.vscode/
 # C extensions
 *.so
 

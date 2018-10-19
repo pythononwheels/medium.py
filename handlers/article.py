@@ -11,7 +11,7 @@ from medium.models.tinydb.author import Author
 import datetime
 @app.add_rest_routes("article")
 @app.add_route("/article/<uuid:id>/upvote", dispatch={"put": "upvote"})
-@app.add_route("/article/list/author/<uuid:id>", dispatch={"put": "upvote"})
+@app.add_route("/article/list/author/<uuid:id>", dispatch={"get": "list_author_articles"})
 @app.add_route("/blog_medium", dispatch={"get" : "blog_medium"})
 @app.add_route("/blog_simple", dispatch={"get" : "blog_simple"})
 class Article(PowHandler):
@@ -51,7 +51,20 @@ class Article(PowHandler):
     hide_list=["created_at", "last_updated", "text", "lead_image", "images", "published_date",
         "author_avatar", "author_twitter", "author_screenname", "comments", "featured_image", "voter_ips"]
 
-    def get_author(self, author_id):
+    def list_author_articles(self, id = None):
+        """
+            list all articles of author with given id
+        """
+        if id:
+            a=Author()
+            m=Model()
+            author = a.find_by_id(id)
+            author_articles=m.find(m.where("author_id") == author.id, as_generator=True)
+            self.success( data=author_articles, curr_user=self.current_user, author=author )
+        else:
+            self.error(message="article, edit id: " + str(id) + "msg: " + str(e) , data=None, status="500")
+
+    def get_sec_author_dict(self, author_id):
         """
             returns a dict with the author information for the given author_id
         """

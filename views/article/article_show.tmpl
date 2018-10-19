@@ -148,9 +148,11 @@
                             <span class="post-read float-right">{{data.read_time}} min read 
                 
                                 <span> <b>Author:</b> 
-                                    <a href="/article/list/author/{{data.author["id"]}}">
-                                        {{data.author["screenname"]}} : <img src="{{ data.author["gravatar"] }}" />
-                                    </a></span>
+                                    <!--a href="/article/list/author/{{data.author["id"]}}">
+                                        {{data.author["screenname"]}}  <img src="{{ data.author["gravatar"] }}" />
+                                    </a-->
+                                    {{data.author["screenname"]}}  <img src="{{ data.author["gravatar"] }}" />
+                                </span>
                                 <a href="https://twitter.com/{{data.author["twitter"]}}" class="btn follow">
                                     Twitter
                                 </a>

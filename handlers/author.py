@@ -108,7 +108,7 @@ class Author(PowHandler):
         # update all author dicts in articles of this author
         #
         art=Article()
-        author_articles=art.find(art.where("author_id") == res.id, as_list=True)
+        author_articles=art.find(art.where("author_id") == res.id, as_generator=True)
         for elem in author_articles:
             elem.author=res.to_dict()
             elem.upsert()
