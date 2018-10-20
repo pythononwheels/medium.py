@@ -79,8 +79,12 @@ class Image(PowHandler):
             except Exception as e: 
                 print("error upserting image")
             #self.success(message="final_filename is uploaded", data=image, format="json")
+            if myapp["proxy"]:
+                file_path = myapp["app_proxy_url"] + myapp["upload_url"] + "/" + sec_filename
+            else:
+                file_path = myapp["app_base_url"] + myapp["upload_url"] + "/" + sec_filename
             out_d = { "files" : [ { 
-                    "url" : myapp["app_base_url"] + myapp["upload_url"] + "/" + sec_filename
+                    "url" : file_path
                     }
                 ]
             }

@@ -120,10 +120,15 @@
                     {% try %}
                         {% if curr_user %}
                             <ul>
-                                <li><a class="nav-link" href="/article">Article list</a></li>
-                                <li><a href="/article/{{data.id}}/edit">edit article</a> </li>
-                                <hr>
-                                <li><a href="/author/list">edit authors</a> </li>
+                                <li><a class="btn btn-success" href="/article/{{data.id}}/edit">edit article</a> </li>
+                                <hr>                   
+                                <li><a class="btn btn-secondary" href="/article">Article list</a></li>
+                                <li><a class="btn btn-secondary" href="/author/list">edit authors</a> </li>
+                            </ul>
+                        {% else %}
+                            <div class="sep"></div>
+                            <ul>
+                                <li><a class="btn btn-secondary" href="/article/{{data.id}}/edit">login to edit</a> </li>
                             </ul>
                         {% end %}
                     {% except %}
