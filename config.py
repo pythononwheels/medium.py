@@ -44,9 +44,11 @@ myapp = {
             "csv"   :   medium.encoders.JsonToCsv(),
             "xml"   :   medium.encoders.JsonToXml()
     },
+    "proxy"             :   False,
     "upload_path"       :   os.path.join(server_settings["static_path"], "upload"), # the upload file path (just a demo here)
     "upload_url"        :   "/static/upload",    # the according upload URL path (For the handler)
-    "app_base_url"      :   server_settings["protocol"] + server_settings["host"] + ":" + str(server_settings["port"]),     
+    "app_base_url"      :   server_settings["protocol"] + server_settings["host"] + ":" + str(server_settings["port"]),
+    "app_proxy_url"     :   server_settings["protocol"] + server_settings["host"],     
     "page_size"         :   5,
     "enable_authentication"     :   False,   # False, simple or custom
     "sql_auto_schema"   :   True,
