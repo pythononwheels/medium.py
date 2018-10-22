@@ -11,6 +11,8 @@
     <!--link rel="stylesheet" href="bower_components/medium-editor/dist/css/themes/default.css" -->
     <link rel="stylesheet" href="/static/medium-editor/css/medium-editor-insert-plugin.min.css">
     <link rel="stylesheet" href="{{  static_url("medium-editor/css/themes/beagle.css")}}">
+    <link rel="stylesheet" href="{{ static_url("side-comments/side-comments.css")}}">
+    <link rel="stylesheet" href="{{ static_url("side-comments/themes/default-theme.css")}}">
     {% end %}
 
 {% block include_js %}
@@ -28,6 +30,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.12.0/js/jquery.fileupload.js"></script>
     <script src="/static/medium-editor/js/medium-editor-insert-plugin.js"></script>
     <script src="{{ static_url("medium-editor/js/medium-button.min.js")}}"></script>
+    <script src="{{ static_url("js/chance.js")}}"></script>
+    <script src="{{ static_url("side-comments/side-comments.js")}}"></script>
+
 {% end %}
 
 
@@ -114,7 +119,7 @@
         var editor = new MediumEditor('.editable', {
                 toolbar: {
                     buttons: ['bold', 'italic', 'underline', 'anchor', 'h1', 'h2', 'h3', 'h4',
-                    , 'orderedlist', 'unorderedlist', 'quote',"html", "pop", 'code', "python", "js"]
+                    , 'orderedlist', 'unorderedlist', 'quote',"html", "pop", 'code', "python", "js", "commentable"]
                 },
                 extensions: {
                     // compact
@@ -160,9 +165,19 @@
                             var out =  '<pre><code>' + replace_p_by_br(html) + '</code></pre>';
                             return out;
                         }
+                    }),
+                    'commentable': new MediumButton({
+                        label:'commentable',
+                        action: function(html, mark, parent){
+                            console.log(html);
+                            // replace all <p></p> by <br> and add the correct language class
+                            //var out =  '<pre><code>' + replace_p_by_br(html) + '</code></pre>';
+                            var id = chance.string({ length: 8, pool : 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%&*()[]'});
+                            var out = '<p data-section-id="' + id + '" class="commentable-section">' + html + '</p>'
+                            console.log(out);
+                            return out;
+                        }
                     })
-            
-            
                 }
                 
             }

@@ -18,6 +18,7 @@ class Article(TinyModel):
         'text'           :   { 'type' : 'string'},
         'tags'           :   { 'type' : 'list', "default" : [] },
         'comments'       :   { 'type' : 'list', "default" : [] },
+        'side_comments'  :   { 'type' : 'dict', "default" : {} }, # see:  https://aroc.github.io/side-comments-demo/#get-started
         'featured'       :   { 'type' : 'boolean', "default" : False },
         'blog'           :   { 'type' : 'boolean', "default" : False },   # True => article will show uip in blog view
         "votes"          :   { "type" : "integer", "default" : 0 },

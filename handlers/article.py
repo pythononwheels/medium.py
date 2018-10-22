@@ -12,6 +12,7 @@ import datetime
 @app.add_rest_routes("article")
 @app.add_route("/article/<uuid:id>/upvote", dispatch={"put": "upvote"})
 @app.add_route("/article/list/author/<uuid:id>", dispatch={"get": "list_author_articles"})
+@app.add_route("/article/<uuid:id>/comment", dispatch={"post": "add_side_comment"})
 @app.add_route("/blog_medium", dispatch={"get" : "blog_medium"})
 @app.add_route("/blog_simple", dispatch={"get" : "blog_simple"})
 class Article(PowHandler):
@@ -50,6 +51,32 @@ class Article(PowHandler):
     # these fields will be hidden by scaffolded views:
     hide_list=["created_at", "last_updated", "text", "lead_image", "images", "published_date",
         "author_avatar", "author_twitter", "author_screenname", "comments", "featured_image", "voter_ips"]
+
+    def add_side_comment(self, id):
+        """
+            adding a side comment for this article / paragraph
+        """
+        try:
+            
+            m=Model()
+            current_article=m.find_by_id(id)
+            data = self.request.body
+            print(data)
+            data=json.loads(data)
+            print()
+            section_id=data["sectionId"]
+            data.pop("sectionId")
+            
+            if str(section_id) in current_article.side_comments:
+                #there are already comments for this section
+                 current_article.side_comments[str(section_id)].append(data)
+            else:
+                # first section comment
+                current_article.side_comments[str(section_id)] = [data]
+            current_article.upsert()
+            print(current_article.side_comments)
+        except Exception as e:
+            self.error(message="Error adding comment. No such atricle id ??: " + str(id) + "msg: " + str(e) , data=None, status="500")
 
     def list_author_articles(self, id = None):
         """

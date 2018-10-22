@@ -3,10 +3,14 @@
 {% block include_css %}
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+    <link rel="stylesheet" href="{{ static_url("side-comments/side-comments.css")}}">
+    <link rel="stylesheet" href="{{ static_url("side-comments/themes/default-theme.css")}}">
 {% end %}
 
 {% block include_js %}
     <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+    <script src="{{ static_url("side-comments/side-comments.js")}}"></script>
+    <script src="{{ static_url("js/chance.js")}}"></script>
 {% end %}
 
 {% block document_ready %}
@@ -70,8 +74,59 @@
     
     
 
-    
+    // First require it.
+    var SideComments = require('side-comments');
+   
+    var existingComments = [
+    {% for section in data.get("side_comments") %}  
+    {
+        "sectionId" : "{{section}}",
+        "comments" : [
+            {% for comm in data.side_comments[section] %}
+                {
+                    "authorAvatarUrl" : "{{comm["authorAvatarUrl"]}}",
+                    "authorName": "{{comm["authorName"]}}",
+                    "comment" : "{{comm["comment"]}}"
+                },
+            {% end %}
+        ]
+    },
+{% end %}
+    ];
 
+    // Then, create a new SideComments instance, passing in the wrapper element and the optional the current user and any existing comments.
+    sideComments = new SideComments('#commentable-area', {
+        id: 1,
+        avatarUrl: "https://robohash.org/" + chance.string({ length: 10, pool : 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUV'}),
+        name: "Guest"
+      }, existingComments);
+
+    // Listen to "commentPosted", and send a request to your backend to save the comment.
+    // More about this event in the "docs" section.
+    sideComments.on('commentPosted', function( comment ) {
+        console.log(comment)
+        $.ajax({
+            url: '/article/{{data.get("id")}}/comment',
+            type: 'POST',
+            data: JSON.stringify(comment),
+            success: function( savedComment ) {
+                // Once the comment is saved, you can insert the comment into the comment stream with "insertComment(comment)".
+                sideComments.insertComment(comment);
+            }
+        });
+    });
+
+    // Listen to "commentDeleted" and send a request to your backend to delete the comment.
+    // More about this event in the "docs" section.
+    sideComments.on('commentDeleted', function( commentId ) {
+        $.ajax({
+            url: '/article/{{data.get("id")}}/comment/' + commentId,
+            type: 'DELETE',
+            success: function( success ) {
+                // Do something.
+            }
+        });
+    });
    
 {% end %}
 
@@ -83,7 +138,7 @@
     <div class="container">
         <div class="row">
             <!-- Begin Fixed Left Share -->
-            <div class="col-md-2 col-xs-12">
+            <div class="col-md-2 col-xs-12" id="share_col"> 
                 <div class="share">
                     <p>
                         Share
@@ -177,7 +232,7 @@
                 <!-- End Featured Image -->
 
                 <!-- Begin Post Content -->
-                <div class="article-post">
+                <div class="article-post" id="commentable-area">
                     {% raw data.text %}
                 </div>
                 <!-- End Post Content -->
