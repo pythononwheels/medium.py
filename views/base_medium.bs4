@@ -16,31 +16,19 @@
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
 	<!-- Custom styles for this template -->
-	
 	<!--link href="{{ static_url("css/justified-nav.css") }}" rel="stylesheet"-->
     <link href="{{ static_url("css/prism.css") }}" rel="stylesheet">
-    
 	<!--link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"-->
 	<link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
-
 	<link href="{{ static_url("css/bootstrap.css")}}" rel="stylesheet">
-	
 	<link href="{{ static_url("assets/css/mediumish.css")}}" rel="stylesheet">
-	
-
-	
 	<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css" type="text/css" media="screen" charset="utf-8">	
-
 	<link href="{{ static_url("css/highlight-styles/hopscotch.css")}}" rel="stylesheet">
-	
 	<link href="{{ static_url("css/pow.css") }}" rel="stylesheet">
 	
 	{% block include_css %}
 	
     {% end %}
-
-
-
 </head>
 <body>
 	

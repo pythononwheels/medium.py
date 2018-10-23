@@ -57,7 +57,6 @@ class Article(PowHandler):
             adding a side comment for this article / paragraph
         """
         try:
-            
             m=Model()
             current_article=m.find_by_id(id)
             data = self.request.body
@@ -76,7 +75,7 @@ class Article(PowHandler):
             current_article.upsert()
             print(current_article.side_comments)
         except Exception as e:
-            self.error(message="Error adding comment. No such atricle id ??: " + str(id) + "msg: " + str(e) , data=None, status="500")
+            self.error(message="Error adding comment. No such aricle id ??: " + str(id) + "msg: " + str(e) , data=None, status="500")
 
     def list_author_articles(self, id = None):
         """
@@ -206,7 +205,8 @@ class Article(PowHandler):
         m=Model()
         res = m.find_by_id(id)
         res.init_from_json(data_json,  simple_conversion=True)
-        #print(res)
+        print(res.side_comments)
+        print(type(res.side_comments))
         try:
             #res.tags= res.tags.split(",")
             res.upsert()

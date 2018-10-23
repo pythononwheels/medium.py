@@ -305,7 +305,7 @@
                 <label for="author_id" class="col-2 col-form-label">Author Id</label>
                 <div class="col-10">
                     <input  type="text" class="form-control" name="author_id" id="author_id" 
-                        value="{{data.get("author_id")}}" />
+                        value="{{data.get("author_id")}}" readonly />
                 </div>
             </div>
             
@@ -321,7 +321,7 @@
                 <label for="published_date" class="col-2 col-form-label">Date</label>
                 <div class="col-10">
                     <input  type="text" class="form-control" name="published_date" id="published_date" 
-                        value="{{data.get("published_date")}}" />
+                        value="{{data.get("published_date")}}" readonly/>
                 </div>
             </div>
 
@@ -345,7 +345,7 @@
                 <label for="votes" class="col-2 col-form-label">Votes</label>
                 <div class="col-10">
                     <input  type="text" class="form-control" name="votes" id="votes" 
-                        value="{{data.get("votes")}}" />
+                        value="{{data.get("votes")}}" readonly/>
                 </div>
             </div>   
 
@@ -374,7 +374,7 @@
             </div>
 
             <div class="form-group row">
-                <label for="title" class="col-2 col-form-label">Tags</label>
+                <label for="tags" class="col-2 col-form-label">Tags</label>
                 <div class="col-10">
                         <!--input  type="text" class="form-control" name="tags[]" id="tags" --> 
                         <input  type="text" class="form-control" name="tags" id="tags" 
@@ -384,7 +384,16 @@
                             value="{{ ' '.join( data.get("tags") ) }}" />
                     {% end %}
                 </div>
-            </div>    
+            </div>  
+            <div class="form-group row">
+                <label for="side-comments" class="col-2 col-form-label">Side Comments:</label>
+                <div class="col-10">
+                    <!--input  type="text" class="form-control" name="tags[]" id="tags" --> 
+                    <input  type="text" class="form-control" name="side_comments" id="side_comments"  
+                        value="{{ data.get("side_comments") }}"
+                    />
+                </div>
+            </div>  
             
             <a href="/{{base_route_rest}}" class="btn btn-primary">Back to {{handler_name}}.list</a>
             <input type="submit" class="btn btn-success" id="submit_edit_form" value="Update {{handler_name}}">
